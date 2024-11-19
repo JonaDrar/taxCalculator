@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.mermaid {
+  text-align: left;
+  font-family: 'Arial', sans-serif;
+  font-size: 1rem;
+}
