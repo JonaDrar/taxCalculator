@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { db } from '../firebase/firebaseConfig';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import Loader from './Loader';
@@ -54,14 +54,11 @@ const History = () => {
           ...doc.data(),
         })) as TaxCalculation[];
         setCalculations(calculationsData);
-      } catch (error: any) {
-        console.error('Error al cargar los datos:', error.message);
-        if (error.message.includes('empleados')) {
-          toast.error('No se encontraron empleados registrados.');
-        } else if (error.message.includes('cálculos')) {
-          toast.error('No se encontraron registros de cálculos.');
+      } catch (error) {
+        if (error instanceof Error) {
+          toast.error(`Error: ${error.message}`);
         } else {
-          toast.error('Ocurrió un error al cargar los datos. Intenta nuevamente.');
+          toast.error('Ocurrió un error desconocido');
         }
       } finally {
         setLoading(false);
