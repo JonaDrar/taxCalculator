@@ -1,50 +1,138 @@
-# React + TypeScript + Vite
+# Calculadora de Impuestos
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+La **Calculadora de Impuestos** es una aplicación web diseñada para calcular y registrar deducciones de impuestos basadas en las leyes chilenas. Permite a los usuarios ingresar información de empleados, ingresos y meses específicos, y calcula automáticamente los impuestos aplicables. Además, ofrece un historial de deducciones y una interfaz modular, intuitiva y validada.
 
-Currently, two official plugins are available:
+## Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Ingreso de Datos**: Selección de empleados, meses y entrada de ingresos brutos.
+- **Cálculo Automático de Impuestos**: Basado en las reglas fiscales chilenas.
+- **Validación de Datos**: Asegura la entrada correcta de datos y evita duplicados.
+- **Historial de Deducciones**: Visualización de deducciones organizadas por mes.
+- **Mensajes de Feedback**: Notificaciones visuales para errores y resultados exitosos.
+- **Modularidad**: Componentes React reutilizables y mantenibles.
+- **Persistencia en la Nube**: Almacenamiento de datos con Firebase Firestore.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Tecnologías Utilizadas
 
-- Configure the top-level `parserOptions` property like this:
+- **Frontend**: React + TypeScript
+- **Backend**: Firebase Firestore
+- **Estilos**: Tailwind CSS
+- **Librerías Adicionales**:
+  - `react-toastify`: Para notificaciones.
+  - `mermaid`: Para renderizar diagramas.
+  - `react-router-dom`: Manejo de rutas.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+---
+
+## Instalación
+
+Sigue estos pasos para instalar y ejecutar el proyecto localmente:
+
+1. **Clona el repositorio**:
+  ```bash
+   git clone https://github.com/JonaDrar/taxCalculator
+   cd tax-calculator
+  ```
+
+2. **Instala las dependencias**:
+  ```bash
+   npm install
+  ```
+
+3. **Configura Firebase**:
+   - Crea un proyecto en [Firebase Console](https://console.firebase.google.com).
+   - Habilita Firestore y agrega las credenciales en un archivo `.env`:
+    ```bash
+     VITE_REACT_APP_API_KEY=<TU_API_KEY>
+     VITE_REACT_APP_AUTH_DOMAIN=<TU_AUTH_DOMAIN>
+     VITE_REACT_APP_PROJECT_ID=<TU_PROJECT_ID>
+     VITE_REACT_APP_STORAGE_BUCKET=<TU_STORAGE_BUCKET>
+     VITE_REACT_APP_MESSAGING_SENDER_ID=<TU_MESSAGING_SENDER_ID>
+     VITE_REACT_APP_APP_ID=<TU_APP_ID>
+    ```
+
+4. **Ejecuta la aplicación**:
+  ```bash
+   npm run dev
+  ```
+
+5. **Abre la aplicación**:
+   - Ve a [http://localhost:5173](http://localhost:5173) en tu navegador.
+
+---
+
+## Estructura del Proyecto
+```bash
+.
+├── src
+│   ├── components
+│   │   ├── TaxCalculator.tsx       # Componente principal para calcular impuestos
+│   │   ├── History.tsx             # Componente para mostrar el historial
+│   │   ├── SequenceDiagram.tsx     # Componente del diagrama de secuencia
+│   │   └── Loader.tsx              # Componente de carga
+│   ├── firebase
+│   │   └── firebaseConfig.ts       # Configuración de Firebase
+│   ├── hooks
+│   │   └── useInputValidation.ts   # Hook para validar entradas
+│   ├── styles                      # Estilos globales
+│   ├── App.tsx                     # Configuración de rutas
+│   └── main.tsx                    # Punto de entrada principal
+├── public
+│   ├── favicon.svg                 # Ícono del proyecto
+├── .env.example                    # Ejemplo de archivo de configuración
+├── README.md                       # Este archivo
+├── vite.config.ts                  # Configuración de Vite
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+---
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Uso
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+### 1. **Ingreso de Datos**
+- Selecciona un empleado, un mes, e ingresa los ingresos brutos.
+- Presiona el botón para calcular el impuesto.
+
+### 2. **Historial**
+- Accede al historial desde la pestaña correspondiente.
+- Observa las deducciones agrupadas por mes.
+
+### 3. **Diagramas**
+- Consulta el flujo del sistema en la página de diagramas.
+
+---
+
+## Capturas de Pantalla
+
+### Calculadora
+![Calculadora](./screenshots/calculadora.png)
+
+### Historial
+![Historial](./screenshots/historial.png)
+
+---
+
+## Licencia
+
+Este proyecto está licenciado bajo la [MIT License](LICENSE).
+
+---
+
+## Contribuciones
+
+¡Las contribuciones son bienvenidas! Si deseas colaborar:
+1. Crea un fork del repositorio.
+2. Realiza los cambios en una nueva rama:
+   git checkout -b feature/nueva-funcionalidad
+3. Realiza un pull request.
+
+---
+
+## Contacto
+
+Si tienes preguntas o sugerencias, no dudes en contactarnos:
+- **Autor:** Jonathan Araya
+- **Correo:** j.arayarobles@gmail.com
+
+---
